@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+:root {
+    /* colors  */
+    --background: #fff;
+    --svgColor: #000;
+    --hover-color: rgba(0, 0, 0, 0.1);
+    --txtPrimary: #000;
+    --primary-border: #ccc;
+    --secondary-border: #065fd4;
+
+
+    /* measurements */
+    --header-height: 3.5rem;
+    --navwidth: 256px;
+
+}
+
+.dark {
+    --background: #0f0f0f;
+    --svgColor: #fff;
+    --hover-color: #272727;
+    --txtPrimary: #fff;
+    --primary-border: #383838;
+
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        --header-height: 3rem;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(171, 171, 171);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(171, 171, 171, 0.5);
+}
+
+body {
+    overflow: hidden;
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.header {
+    display: flexbox;
+}
+
+.iconBtn {
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    border-radius: 50%;
+}
+
+.iconBtn:not(.hidden) {
+    display: flex;
+}
+
+.iconBtn:hover {
+    background-color: var(--hover-color);
+}
+
+
+
+svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--svgColor);
+}
+
+.svg-icon {
+    pointer-events: none;
+    display: inherit;
+
+}
+
+.logo {
+    width: 90px;
+    height: 20px;
+
+}
+
+.logo svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+}
+
+.navContainer {
+    transform: translate3d(-100%, 0, 0);
+
+    transition: transform 0.3s, width 0.3s;
+
+}
+
+.navContainer.opened {
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+}
+
+.overlay {
+    z-index: 30;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.2s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.overlay.opened {
+    visibility: visible;
+    opacity: 1;
+}
+
+@media screen and (min-width: 800px) {
+    .overlay.opened {
+        display: none;
+    }
+
+}
+@media screen and (max-width: 580px) {
+    .iconBtn:hover {
+        background-color: transparent;
+    }
+}
+
+
+#auto_suggest.opened {
+    display: block;
+}
