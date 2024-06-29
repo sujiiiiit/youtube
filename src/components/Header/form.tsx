@@ -8,6 +8,9 @@ const Form = () => {
   const inputRef: RefObject<HTMLInputElement> = useRef(null);
   const searchBarForm: RefObject<HTMLFormElement> = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [results, setResults] = useState<{ postLink: string; title: string }[]>(
+    []
+  );
 
   const handleClearSearch = () => {
     setSearchValue("");
@@ -40,6 +43,17 @@ const Form = () => {
       inputRef.current?.focus();
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (searchValue) {
+      fetch(`https://yt-api.sujitdwivediii.workers.dev/search/${searchValue}`)
+        .then((response) => response.json())
+        .then((data) => setResults(data))
+        .catch((error) => console.error("Error fetching data:", error));
+    } else {
+      setResults([]);
+    }
+  }, [searchValue]);
 
   return (
     <>
@@ -100,33 +114,34 @@ const Form = () => {
             isFocused || searchValue ? "block" : "hidden"
           } block absolute bg-white dark:bg-[var(--hover-color)] w-full max-w-[34rem] top-[50px] z-30 rounded-[10px] py-4 max-h-[60dvh] overflow-auto border border-[#ccc] border-t-[#d9d9d9] shadow-[0_2px_4px_rgba(0,0,0,0.2)] dark:shadow-none dark:border-none xs:border-none xs:top-10 xs:rounded-[0px] xs:max-h-[100dvh] xs:shadow-none xs:!bg-transparent xs:w-full xs:left-0 `}
         >
-          <div id="autoSuggestInner"></div>
-          <div>
-            <a
-              className="relative flex justify-between items-center px-4 py-[10px] xs:px-2 xs:py-[0px] text-Primary no-underline text-[14px] font-medium pr-0 hover:bg-[var(--hover-color)] 
-"
-            >
-              <span className="flex items-center ">
-                <span className="iconBtn !bg-transparent">
-                  <svg viewBox="0 0 24 24">
-                    <path d="m20.87 20.17-5.59-5.59C16.35 13.35 17 11.75 17 10c0-3.87-3.13-7-7-7s-7 3.13-7 7 3.13 7 7 7c1.75 0 3.35-.65 4.58-1.71l5.59 5.59.7-.71zM10 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"></path>
-                  </svg>
-                </span>
-                <span className="pl-4">Serch query</span>
-              </span>
-              <span className="iconBtn !w-full max-w-[64px] xs:!w-[40px] searchBtn cursor-pointer flex">
-                <svg
-                  className="svg-icon -rotate-45"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
+            {results.map((result, index) => (
+           
+                <a key={index}
+                  className="relative flex justify-between items-center px-4  xs:px-2 text-Primary no-underline text-[14px] font-medium pr-0 hover:bg-[var(--hover-color)] dark:hover:bg-white/5 xs:hover:bg-transparent xs:dark:hover:bg-transparent"
+                  href={result.postLink}
                 >
-                  <polygon points="19.35,11.5 11.5,3.65 3.65,11.5 4.35,12.21 11,5.56 11,20 12,20 12,5.56 18.65,12.21"></polygon>
-                </svg>
-              </span>
-            </a>
+                  <span className="flex items-center ">
+                    <span className="iconBtn ">
+                      <svg viewBox="0 0 24 24">
+                        <path d="m20.87 20.17-5.59-5.59C16.35 13.35 17 11.75 17 10c0-3.87-3.13-7-7-7s-7 3.13-7 7 3.13 7 7 7c1.75 0 3.35-.65 4.58-1.71l5.59 5.59.7-.71zM10 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"></path>
+                      </svg>
+                    </span>
+                    <span className="pl-4">{result.title}</span>
+                  </span>
+                  <span className="iconBtn !w-full max-w-[64px] xs:!w-[40px] searchBtn cursor-pointer flex">
+                    <svg
+                      className="svg-icon -rotate-45"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                    >
+                      <polygon points="19.35,11.5 11.5,3.65 3.65,11.5 4.35,12.21 11,5.56 11,20 12,20 12,5.56 18.65,12.21"></polygon>
+                    </svg>
+                  </span>
+                </a>
+              
+            ))}
           </div>
-        </div>
       </form>
       <div
         className={`${
