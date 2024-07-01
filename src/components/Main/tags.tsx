@@ -64,7 +64,7 @@ const MainTags = () => {
         ref={listRef}
         className="hide-scrollbar h-full items items-center flex border-0 list-none overflow-x-auto m-0 px-4 xs:px-2 scroll-smooth"
       >
-        <button className="group menuBtn tag_items mx-3 xs:mx-1 block text-ellipsis justify-center whitespace-nowrap m-[12px] ml-0 bg-[var(--hover-color)] rounded-lg xs:rounded-md px-[12px] transition-[background-color_0.5s_cubic-bezier(0.05,0,0,1)]">
+        <button className="hidden group menuBtn tag_items mx-3 xs:mx-1 xs:block text-ellipsis justify-center whitespace-nowrap m-[12px] ml-0 bg-[var(--hover-color)] rounded-lg xs:rounded-md px-[12px] transition-[background-color_0.5s_cubic-bezier(0.05,0,0,1)]">
           <a className="  no-underline h-[32px] min-w-[12px] box-border outline-none overflow-hidden cursor-pointer select-none relative text-sm xs:text-xs	  leading-5 flex flex-row items-center whitespace-nowrap xs:h-7">
             <svg
               className="svg-icons"
@@ -76,7 +76,8 @@ const MainTags = () => {
             </svg>
           </a>
         </button>
-        {[
+        {["Recent",
+        "Anime",
           "Korean Drama",
           "Japanese Drama",
           "Taiwanese Drama",

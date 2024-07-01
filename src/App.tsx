@@ -5,7 +5,7 @@ import Tags from "./components/Main/tags";
 import ContentItem from "./components/Main/recent";
 
 const App: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const updateIsOpen = () => {
     if (window.innerWidth >= 810) {
