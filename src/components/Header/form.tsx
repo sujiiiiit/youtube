@@ -125,6 +125,7 @@ const Form = () => {
   return (
     <>
       <form
+        data-focused={isFocused}
         ref={searchBarForm}
         className={`searchbarform relative flex xs:items-center w-full max-w-xl h-10 rounded-full border-0 outline-0 pl-8 ml-10 xs:absolute z-30 xs:bg-[var(--background)] xs:right-0 xs:left-0 xs:m-0 xs:px-2.5 xs:top-2 ${
           isOpen ? "xs:flex" : "xs:hidden"
