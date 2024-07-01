@@ -3,7 +3,19 @@
 @tailwind utilities;
 
 
-
+:root {
+    --light-theme-color: #ffffff;
+    --dark-theme-color: #000000;
+  }
+  
+  body.light-theme {
+    --theme-color: var(--light-theme-color);
+  }
+  
+  body.dark-theme {
+    --theme-color: var(--dark-theme-color);
+  }
+  
 
 :root {
     /* colors  */

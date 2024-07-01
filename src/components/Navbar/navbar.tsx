@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
   useEffect(() => {
     const handleMenuBtnClick = () => {
       toggleOpenedClass();
-      console.log("menuBtn clicked");
+      // console.log("menuBtn clicked");
     };
 
     const menuBtns = document.querySelectorAll(".menuBtn");

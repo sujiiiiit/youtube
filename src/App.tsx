@@ -5,7 +5,7 @@ import Tags from "./components/Main/tags";
 import ContentItem from "./components/Main/recent";
 
 const App: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(window.innerWidth > 600 ? true : false);
 
   const updateIsOpen = () => {
     if (window.innerWidth >= 810) {
@@ -33,12 +33,16 @@ const App: React.FC = () => {
         <section className="main flex w-dvw">
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
           <div
-            className={`mainContainer ${isOpen && window.innerWidth>600?"w-[calc(100dvw_-_var(--navwidth))]":"w-dvw"} bg-[var(--primary)] h-[calc(100vh_-_var(--header-height))] transition-[max-width_0.3s] mr-2 xs:mr-0 ${
+            className={`mainContainer ${
+              isOpen && window.innerWidth > 600
+                ? "w-[calc(100dvw_-_var(--navwidth))]"
+                : "w-dvw"
+            } bg-[var(--primary)] h-[calc(100vh_-_var(--header-height))] transition-[max-width_0.3s] mr-2 xs:mr-0 ${
               isOpen ? "nav-opened" : ""
             }`}
           >
             <Tags />
-            <ContentItem/>
+            <ContentItem />
           </div>
         </section>
       </div>

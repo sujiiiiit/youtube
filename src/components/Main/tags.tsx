@@ -45,7 +45,7 @@ const MainTags = () => {
   };
 
   return (
-    <div className="main_tags w-full relative flex items-center h-[var(--header-height)] xs:border border-y-[var(--hover-color)] border-x-0">
+    <div className="main_tags w-full relative flex items-center h-[var(--header-height)] xs:border-y border-y-[var(--hover-color)] border-x-0">
       <div
         id="left-slide-arrow"
         className={`xs:hidden absolute flex flex-row justify-center z-10 top-0 bottom-0 items-center ${
