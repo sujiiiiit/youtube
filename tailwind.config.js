@@ -12,6 +12,7 @@ export default {
       //custom colors
       colors: {
         Primary: "var(--txtPrimary)",
+        Secondary: "var(--txtSecondary)",
       },
       //custom screen sizes
       screens: {

@@ -38,10 +38,10 @@ const App = () => {
     <>
       <header className="header  h-14 xs:h-12 relative flex items-center	px-4 py-0 justify-between xs:px-2 z-30" >
         <div className="flex gap-4 xs:gap-2 flex-row h-14 xs:h-12 items-center justify-between">
-          <button className="iconBtn menuBtn">
+          <button className="iconBtn menuBtn xs:!hidden">
             <Menu />
           </button>
-          <span className="logo">
+          <span className="logo xs:ml-1.5">
             <YtLogo />
           </span>
         </div>

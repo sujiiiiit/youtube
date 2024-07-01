@@ -11,6 +11,7 @@
     --svgColor: #000;
     --hover-color: rgba(0, 0, 0, 0.1);
     --txtPrimary: #000;
+    --txtSecondary:#606060;
     --primary-border: #ccc;
     --secondary-border: #065fd4;
 
@@ -19,6 +20,14 @@
     --header-height: 3.5rem;
     --navwidth: 256px;
 
+
+    /* gird  */
+    --grid-padding:1.5rem;
+    --ytd-rich-grid-item-max-width: 500px;
+    --ytd-rich-grid-items-per-row: 4;
+    --ytd-rich-grid-item-margin: 16px;
+    --ytd-rich-grid-content-max-width: calc(var(--ytd-rich-grid-items-per-row) * (var(--ytd-rich-grid-item-max-width) + var(--ytd-rich-grid-item-margin)) - var(--ytd-rich-grid-item-margin));
+
 }
 
 .dark {
@@ -26,13 +35,32 @@
     --svgColor: #fff;
     --hover-color: #272727;
     --txtPrimary: #fff;
+    --txtSecondary:#aaa;
     --primary-border: #383838;
 
 }
 
-@media screen and (max-width: 600px) {
+
+
+@media screen and (max-width: 1280px) {
     :root {
         --header-height: 3rem;
+        --ytd-rich-grid-items-per-row: 3;
+
+    }
+}
+@media screen and (max-width: 1000px) {
+    :root {
+        --header-height: 3rem;
+        --ytd-rich-grid-items-per-row: 2;
+
+    }
+}
+@media screen and (max-width: 480px) {
+    :root {
+        --header-height: 3rem;
+        --ytd-rich-grid-items-per-row: 1;
+
     }
 }
 
@@ -58,14 +86,26 @@
     background: rgb(171, 171, 171, 0.5);
 }
 
+.hide-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
 body {
     overflow: hidden;
     background-color: var(--background);
     margin: 0;
     padding: 0;
+
+
 }
-
-
 
 .header {
     display: flexbox;
@@ -119,13 +159,12 @@ svg {
 
 .navContainer {
     transform: translate3d(-100%, 0, 0);
-
     transition: transform 0.3s, width 0.3s;
 
 }
 
 .navContainer.opened {
-    width: 100%;
+    width: var(--navwidth);
     transform: translate3d(0, 0, 0);
 }
 
@@ -153,13 +192,34 @@ svg {
     }
 
 }
+
 @media screen and (max-width: 580px) {
     .iconBtn:hover {
         background-color: transparent;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
     }
 }
 
 
 #auto_suggest.opened {
     display: block;
+}
+
+#left-slide-arrow:after {
+    content: "";
+    height: var(--header-height);
+    background: linear-gradient(to right, var(--background) 20%, rgba(33, 33, 33, 0) 80%);
+    width: 50px;
+    pointer-events: none;
+}
+
+#right-slide-arrow::before {
+    content: "";
+    height: var(--header-height);
+    background: linear-gradient(to left, var(--background) 20%, rgba(33, 33, 33, 0) 80%);
+    width: 50px;
+    pointer-events: none;
 }
