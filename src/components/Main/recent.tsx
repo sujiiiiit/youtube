@@ -52,6 +52,7 @@ const ContentItem: React.FC = () => {
     const loadMoreObserver = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && hasMore) {
         setPage((prevPage) => prevPage + 1);
+        console.log("showing recent added for page", page + 1)
       }
     });
 
@@ -144,10 +145,31 @@ const ContentItem: React.FC = () => {
               </div>
             </a>
           ))}
-      {loading && page > 1 && (
-        <div className="loading-indicator">Loading more...</div>
-      )}
-      <div ref={loadMoreTriggerRef}></div>
+                <div ref={loadMoreTriggerRef} className="pb-4"></div>
+
+      {hasMore && page >= 1 && (
+        <div className="loading-indicator text-Primary">Loading more...</div>
+      ) ? Array.from({ length: 8 }).map((_, index) => (
+        <div
+          key={index}
+          className="content_div flex flex-col relative ml-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mr-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mb-10 w-[calc(100%_/_var(--ytd-rich-grid-items-per-row)_-_var(--ytd-rich-grid-item-margin)_-_0.01px)] xs:rounded-none xs:p-0 xs:m-0 xs:mb-10 xs:w-full xs:max-w-none animate-pulse "
+        >
+          <div className="img_cont lazy-bg aspect-[16/9] bg-cover bg-no-repeat bg-center rounded-lg xs:rounded-none bg-[var(--hover-color)]"></div>
+          <div className="content_inside flex ">
+            <div className="w-full">
+              <div className="content_name rounded-full text-transparent text-base font-medium overflow-hidden block max-h-16.4 clamp-[2] box-[vertical] text-ellipsis whitespace-normal my-[12px]  mb-1 xs:mb-[2px] xs:mx-3 bg-[var(--hover-color)] h-4 w-4/4">
+                Loading
+              </div>
+              <div className="content_info flex text-Secondary text-sm flex-nowrap">
+                <div className="content_ep text-transparent rounded-full bg-[var(--hover-color)] h-4 mt-2 w-3/4 xs:mx-3">
+                  Loading
+                </div>
+                <span className="space_span mx-1.5"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )):""}
     </div>
   );
 };
