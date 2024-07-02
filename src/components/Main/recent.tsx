@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 
 interface ContentItemType {
   imgURL: string;
@@ -121,10 +122,10 @@ const ContentItem: React.FC = () => {
             </div>
           ))
         : data.map((item, index) => (
-            <a
+            <Link
               key={index}
+              to={`watch${item.postLink.replace(/\.html$/, "")}`}
               className="group content_div flex flex-col relative ml-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mr-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mb-10 w-[calc(100%_/_var(--ytd-rich-grid-items-per-row)_-_var(--ytd-rich-grid-item-margin)_-_0.01px)] xs:rounded-none xs:p-0 xs:m-0 xs:mb-10 xs:w-full xs:max-w-none"
-              href={`watch${item.postLink.replace(/\.html$/, "")}`}
             >
               <div
                 id={`img_${index}`}
@@ -146,7 +147,7 @@ const ContentItem: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
       <div
         ref={loadMoreTriggerRef}
@@ -177,8 +178,9 @@ const ContentItem: React.FC = () => {
           ""
         )} */}
 
-        {hasMore && page >= 1 && <div className="loading-indicator"></div>
-          ? Array.from({ length: window.innerWidth > 600 ? 4 : 1 }).map(
+        {hasMore && page >= 1 && (
+          <div className="loading-indicator">
+            {Array.from({ length: window.innerWidth > 600 ? 4 : 1 }).map(
               (_, index) => (
                 <div
                   key={index}
@@ -200,8 +202,9 @@ const ContentItem: React.FC = () => {
                   </div>
                 </div>
               )
-            )
-          : ""}
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Header from "./components/Header/header";
 import Navbar from "./components/Navbar/navbar";
 import Tags from "./components/Main/tags";
@@ -46,8 +51,12 @@ const App: React.FC = () => {
               <Route path="/" element={<ContentItem />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/watch" element={<WatchPage />} />
-              <Route path="/drama-detail/*" element={<DramaDetail />} />
-              <Route path="/drama-detail" element={<Navigate to="/drama-detail" />} />
+              <Route path="/watch/*" element={<Navigate to="/watch" />} />
+              <Route path="/drama-detail" element={<DramaDetail />} />
+              <Route
+                path="/drama-detail/*"
+                element={<Navigate to="/drama-detail" />}
+              />
               {/* Add more routes as needed */}
             </Routes>
           </div>
