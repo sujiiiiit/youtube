@@ -3,18 +3,18 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
 } from "react-router-dom";
 import Header from "./components/Header/header";
 import Navbar from "./components/Navbar/navbar";
-import Tags from "./components/Main/tags";
 import ContentItem from "./components/Main/recent";
 import SearchPage from "./components/Main/search";
 import WatchPage from "./components/Main/watch";
 import DramaDetail from "./components/Main/drama-detail";
+import MainLayout from "./components/Main/MainLayout"; // Import the new MainLayout component
 
 const App: React.FC = () => {
   const [isOpen, setIsOpen] = useState(window.innerWidth > 600 ? true : false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const updateIsOpen = () => {
     setIsOpen(window.innerWidth >= 810);
@@ -24,6 +24,7 @@ const App: React.FC = () => {
     updateIsOpen();
 
     const handleResize = () => {
+      setWindowWidth(window.innerWidth);
       updateIsOpen();
     };
 
@@ -37,29 +38,17 @@ const App: React.FC = () => {
         <Header />
         <section className="main flex w-dvw">
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
-          <div
-            className={`mainContainer relative ${
-              isOpen && window.innerWidth > 600
-                ? "w-[calc(100dvw_-_var(--navwidth))]"
-                : "w-dvw"
-            } bg-[var(--primary)] h-[calc(100vh_-_var(--header-height))] transition-[max-width_0.3s] mr-2 xs:mr-0 ${
-              isOpen ? "nav-opened" : ""
-            }`}
-          >
-            <Tags />
+          <MainLayout isOpen={isOpen} windowWidth={windowWidth}>
             <Routes>
               <Route path="/" element={<ContentItem />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/watch" element={<WatchPage />} />
-              <Route path="/watch/*" element={<Navigate to="/watch" />} />
+              <Route path="/watch/*" element={<WatchPage />} />
               <Route path="/drama-detail" element={<DramaDetail />} />
-              <Route
-                path="/drama-detail/*"
-                element={<Navigate to="/drama-detail" />}
-              />
+              <Route path="/drama-detail/*" element={<DramaDetail />} />
               {/* Add more routes as needed */}
             </Routes>
-          </div>
+          </MainLayout>
         </section>
       </div>
     </Router>

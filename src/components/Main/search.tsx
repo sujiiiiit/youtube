@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 interface ContentItemType {
   imgURL: string;
@@ -119,7 +119,11 @@ const ContentItem: React.FC = () => {
   }, [data, lazyLoad]);
 
   return (
-    <div className="content_grid w-full h-[calc(100vh_-_(2_*_var(--header-height)))] max-w-[calc(var(--ytd-rich-grid-content-max-width)_+_var(--ytd-rich-grid-item-margin))] py-[var(--grid-padding)] pl-[16px] pr-[10px] flex flex-wrap overflow-auto xs:pt-0 xs:pl-0 xs:pr-0 xs:m-0 xs:max-w-none">
+    <div
+      className={`content_grid w-full h-[calc(100vh_-_(2_*_var(--header-height)))] max-w-[calc(var(--ytd-rich-grid-content-max-width)_+_var(--ytd-rich-grid-item-margin))] ${
+        data.length === 0 ? "" : "py-[var(--grid-padding)]"
+      } pl-[16px] pr-[10px] flex flex-wrap overflow-auto xs:pt-0 xs:pl-0 xs:pr-0 xs:m-0 xs:max-w-none`}
+    >
       {loading && page === 1 ? (
         // Condition 1: Loading state
         Array.from({ length: 12 }).map((_, index) => (
@@ -140,16 +144,22 @@ const ContentItem: React.FC = () => {
       ) : data.length === 0 ? (
         // Condition 2: No data found
         <div className="not-found-text w-full h-full flex flex-col justify-center items-center gap-4">
-            <img className="w-full max-w-28	 xs:max-w-24" src="./assets/monkey.png" alt="Not Found" />
-            <div className="text-3xl xs:text-xl text-Primary font-bold">Not Found</div>
+          <img
+            className="w-full max-w-28	 xs:max-w-24"
+            src="./assets/monkey.png"
+            alt="Not Found"
+          />
+          <div className="text-3xl xs:text-xl text-Primary font-bold">
+            Not Found
+          </div>
         </div>
       ) : (
         // Condition 3: Render data items
         data.map((item, index) => (
-          <a
+          <Link
             key={index}
             className="group content_div flex flex-col relative ml-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mr-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mb-5 w-[calc(100%_/_var(--ytd-rich-grid-items-per-row)_-_var(--ytd-rich-grid-item-margin)_-_0.01px)] xs:rounded-none xs:p-0 xs:m-0 xs:mb-10 xs:w-full xs:max-w-none"
-            href={`${item.postLink.replace(/\.html$/, "")}`}
+            to={`${item.postLink.replace(/\.html$/, "")}`}
           >
             <div
               id={`img_${index}`}
@@ -164,7 +174,7 @@ const ContentItem: React.FC = () => {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         ))
       )}
 
