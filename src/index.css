@@ -3,18 +3,6 @@
 @tailwind utilities;
 
 
-:root {
-    --light-theme-color: #ffffff;
-    --dark-theme-color: #000000;
-  }
-  
-  body.light-theme {
-    --theme-color: var(--light-theme-color);
-  }
-  
-  body.dark-theme {
-    --theme-color: var(--dark-theme-color);
-  }
   
 
 :root {
@@ -24,6 +12,7 @@
     --hover-color: rgba(0, 0, 0, 0.1);
     --txtPrimary: #000;
     --txtSecondary:#606060;
+    --txtblue:#3ea6ff;
     --primary-border: #ccc;
     --secondary-border: #065fd4;
 

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+// import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from "./components/Header/header";
 import Navbar from "./components/Navbar/navbar";
 import Tags from "./components/Main/tags";
 import ContentItem from "./components/Main/recent";
+import SearchPage from "./components/Main/search";
 
 const App: React.FC = () => {
   const [isOpen, setIsOpen] = useState(window.innerWidth > 600 ? true : false);
@@ -27,7 +30,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <Router>
       <div className="h-dvh w-dvw font-Geist bg-[var(--background)] ">
         <Header />
         <section className="main flex w-dvw">
@@ -41,12 +44,16 @@ const App: React.FC = () => {
               isOpen ? "nav-opened" : ""
             }`}
           >
-            <Tags />
-            <ContentItem />
+            <Tags/>
+            <Routes>
+              <Route path="/" element={<ContentItem />} />
+              <Route path="/search" element={<SearchPage />} />
+              {/* Add more routes as needed */}
+            </Routes>
           </div>
         </section>
       </div>
-    </>
+    </Router>
   );
 };
 
