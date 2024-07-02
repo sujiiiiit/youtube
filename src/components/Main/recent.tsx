@@ -52,9 +52,9 @@ const ContentItem: React.FC = () => {
     const loadMoreObserver = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && hasMore) {
         setPage((prevPage) => prevPage + 1);
-        console.log("showing recent added for page", page + 1)
+        console.log("showing recent added for page", page + 1);
       }
-    });
+    }, { threshold: 0.1 });
 
     if (loadMoreTriggerRef.current) {
       loadMoreObserver.observe(loadMoreTriggerRef.current);
@@ -148,8 +148,8 @@ const ContentItem: React.FC = () => {
                 <div ref={loadMoreTriggerRef} className="pb-4"></div>
 
       {hasMore && page >= 1 && (
-        <div className="loading-indicator text-Primary">Loading more...</div>
-      ) ? Array.from({ length: 8 }).map((_, index) => (
+        <div className="loading-indicator"></div>
+      )? Array.from({ length: 12 }).map((_, index) => (
         <div
           key={index}
           className="content_div flex flex-col relative ml-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mr-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mb-10 w-[calc(100%_/_var(--ytd-rich-grid-items-per-row)_-_var(--ytd-rich-grid-item-margin)_-_0.01px)] xs:rounded-none xs:p-0 xs:m-0 xs:mb-10 xs:w-full xs:max-w-none animate-pulse "
