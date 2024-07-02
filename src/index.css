@@ -41,6 +41,27 @@
 
 }
 
+@font-face {
+    font-family: "SyoogBold";
+    src: url("../../fonts/Syoog/SyoogBold.otf") format("opentype");
+    font-weight: 400;
+}
+
+/* Geist fonts  */
+/* Light */
+@font-face {
+    font-family: 'Geist';
+    src: url('../../fonts/Geist/Geist-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist';
+    src: url('../../fonts/Geist/Geist-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
 
 
 @media screen and (max-width: 1280px) {

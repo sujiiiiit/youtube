@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
-// import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from "./components/Header/header";
 import Navbar from "./components/Navbar/navbar";
 import Tags from "./components/Main/tags";
 import ContentItem from "./components/Main/recent";
 import SearchPage from "./components/Main/search";
+import WatchPage from "./components/Main/watch";
+import DramaDetail from "./components/Main/drama-detail";
 
 const App: React.FC = () => {
   const [isOpen, setIsOpen] = useState(window.innerWidth > 600 ? true : false);
 
   const updateIsOpen = () => {
-    if (window.innerWidth >= 810) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
+    setIsOpen(window.innerWidth >= 810);
   };
 
   useEffect(() => {
@@ -36,7 +33,7 @@ const App: React.FC = () => {
         <section className="main flex w-dvw">
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
           <div
-            className={`mainContainer ${
+            className={`mainContainer relative ${
               isOpen && window.innerWidth > 600
                 ? "w-[calc(100dvw_-_var(--navwidth))]"
                 : "w-dvw"
@@ -44,10 +41,13 @@ const App: React.FC = () => {
               isOpen ? "nav-opened" : ""
             }`}
           >
-            <Tags/>
+            <Tags />
             <Routes>
               <Route path="/" element={<ContentItem />} />
               <Route path="/search" element={<SearchPage />} />
+              <Route path="/watch" element={<WatchPage />} />
+              <Route path="/drama-detail/*" element={<DramaDetail />} />
+              <Route path="/drama-detail" element={<Navigate to="/drama-detail" />} />
               {/* Add more routes as needed */}
             </Routes>
           </div>

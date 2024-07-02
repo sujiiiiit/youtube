@@ -148,10 +148,15 @@ const ContentItem: React.FC = () => {
               </div>
             </a>
           ))}
-      <div ref={loadMoreTriggerRef} className="w-full h-10 flex justify-center items-center">
-        {hasMore && page >= 1 ? (
+      <div
+        ref={loadMoreTriggerRef}
+        className={`content_grid w-full  max-w-[calc(var(--ytd-rich-grid-content-max-width)_+_var(--ytd-rich-grid-item-margin))] ${
+          hasMore ? "pb-[var(--grid-padding)] " : ""
+        } pl-[16px] pr-[10px] flex flex-wrap overflow-auto xs:pt-0 xs:pl-0 xs:pr-0 xs:m-0 xs:max-w-none`}
+      >
+        {/* {hasMore && page >= 1 ? (
           <div className="loading-indicator w-full h-10 flex justify-center items-center">
-            <svg className="w-14 h-14"  viewBox="0 0 100 100">
+            <svg className="w-14 h-14" viewBox="0 0 100 100">
               <path
                 fill="var(--txtblue)"
                 d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"
@@ -170,51 +175,33 @@ const ContentItem: React.FC = () => {
           </div>
         ) : (
           ""
-        )}
+        )} */}
 
-        {/* {hasMore &&
-        page >= 1 && (
-          <div className="loading-indicator">
-            <svg className="w-2.5 h-2.5" x="0px" y="0px" viewBox="0 0 100 100">
-              <path
-                fill="#fff"
-                d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  attributeType="XML"
-                  type="rotate"
-                  dur="1s"
-                  from="0 50 50"
-                  to="360 50 50"
-                  repeatCount="indefinite"
-                />
-              </path>
-            </svg>
-          </div>
-        )
-          ? Array.from({ length: 12 }).map((_, index) => (
-              <div
-                key={index}
-                className="content_div flex flex-col relative ml-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mr-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mb-10 w-[calc(100%_/_var(--ytd-rich-grid-items-per-row)_-_var(--ytd-rich-grid-item-margin)_-_0.01px)] xs:rounded-none xs:p-0 xs:m-0 xs:mb-10 xs:w-full xs:max-w-none animate-pulse "
-              >
-                <div className="img_cont lazy-bg aspect-[16/9] bg-cover bg-no-repeat bg-center rounded-lg xs:rounded-none bg-[var(--hover-color)]"></div>
-                <div className="content_inside flex ">
-                  <div className="w-full">
-                    <div className="content_name rounded-full text-transparent text-base font-medium overflow-hidden block max-h-16.4 clamp-[2] box-[vertical] text-ellipsis whitespace-normal my-[12px]  mb-1 xs:mb-[2px] xs:mx-3 bg-[var(--hover-color)] h-4 w-4/4">
-                      Loading
-                    </div>
-                    <div className="content_info flex text-Secondary text-sm flex-nowrap">
-                      <div className="content_ep text-transparent rounded-full bg-[var(--hover-color)] h-4 mt-2 w-3/4 xs:mx-3">
+        {hasMore && page >= 1 && <div className="loading-indicator"></div>
+          ? Array.from({ length: window.innerWidth > 600 ? 4 : 1 }).map(
+              (_, index) => (
+                <div
+                  key={index}
+                  className="content_div flex flex-col relative ml-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mr-[calc(var(--ytd-rich-grid-item-margin)_/_2)] mb-10 w-[calc(100%_/_var(--ytd-rich-grid-items-per-row)_-_var(--ytd-rich-grid-item-margin)_-_0.01px)] xs:rounded-none xs:p-0 xs:m-0 xs:mb-10 xs:w-full xs:max-w-none animate-pulse "
+                >
+                  <div className="img_cont lazy-bg aspect-[16/9] bg-cover bg-no-repeat bg-center rounded-lg xs:rounded-none bg-[var(--hover-color)]"></div>
+                  <div className="content_inside flex ">
+                    <div className="w-full">
+                      <div className="content_name rounded-full text-transparent text-base font-medium overflow-hidden block max-h-16.4 clamp-[2] box-[vertical] text-ellipsis whitespace-normal my-[12px]  mb-1 xs:mb-[2px] xs:mx-3 bg-[var(--hover-color)] h-4 w-4/4">
                         Loading
                       </div>
-                      <span className="space_span mx-1.5"></span>
+                      <div className="content_info flex text-Secondary text-sm flex-nowrap">
+                        <div className="content_ep text-transparent rounded-full bg-[var(--hover-color)] h-4 mt-2 w-3/4 xs:mx-3">
+                          Loading
+                        </div>
+                        <span className="space_span mx-1.5"></span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
-          : ""} */}
+              )
+            )
+          : ""}
       </div>
     </div>
   );

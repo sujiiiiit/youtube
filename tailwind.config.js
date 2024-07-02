@@ -6,6 +6,7 @@ export default {
     //custom-fonts
     fontFamily: {
       Geist: ['"Geist"', "sans-serif"],
+      SyoogBold: ['"SyoogBold"', "sans-serif"],
       GeistMono: ['"GeistMono"', "sans-serif"],
     },
     extend: {

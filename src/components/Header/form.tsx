@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CrossIcon from "../../assets/icons/cross";
 import SearchIcon from "../../assets/icons/search";
 import debounce from "lodash.debounce";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [searchValue, setSearchValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const searchBarForm = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState<{ postLink: string; title: string }[]>(
     []
@@ -15,13 +15,9 @@ const Form = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const displayedPages = useRef(new Set<number>());
+  const navigate = useNavigate(); // React Router's navigate function
 
   const handleClearSearch = () => {
-    setSearchValue("");
-    inputRef.current?.focus();
-  };
-
-  const handlefocus = () => {
     setSearchValue("");
     inputRef.current?.focus();
   };
@@ -122,16 +118,25 @@ const Form = () => {
     }
   }, [page]);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Construct the search URL
+    const searchUrl = `/search?q=${encodeURIComponent(searchValue)}`;
+    setIsOpen(false); // Close the search bar
+
+    // Navigate to the search URL using React Router's navigate function
+    navigate(searchUrl);
+  };
+
   return (
     <>
       <form
         data-focused={isFocused}
-        ref={searchBarForm}
         className={`searchbarform relative flex xs:items-center w-full max-w-xl h-10 rounded-full border-0 outline-0 pl-8 ml-10 xs:absolute z-30 xs:bg-[var(--background)] xs:right-0 xs:left-0 xs:m-0 xs:px-2.5 xs:top-2 ${
           isOpen ? "xs:flex" : "xs:hidden"
         }`}
-        action="/search"
-        method="GET"
+        onSubmit={handleSubmit} // Handle form submission
       >
         <div
           className={`${
@@ -192,15 +197,14 @@ const Form = () => {
               key={index}
               className="relative flex justify-between items-center px-4 xs:px-2 text-Primary no-underline text-[14px] font-medium pr-0 hover:bg-[var(--hover-color)] dark:hover:bg-white/5 xs:hover:bg-transparent xs:dark:hover:bg-transparent"
               href={result.postLink}
-              onClick={handlefocus}
             >
-              <span className="flex items-center overflow-hidden">
+              <span className="w-full flex items-center overflow-hidden">
                 <span className="iconBtn hover:!bg-transparent">
                   <svg viewBox="0 0 24 24">
                     <path d="m20.87 20.17-5.59-5.59C16.35 13.35 17 11.75 17 10c0-3.87-3.13-7-7-7s-7 3.13-7 7 3.13 7 7 7c1.75 0 3.35-.65 4.58-1.71l5.59 5.59.7-.71zM10 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"></path>
                   </svg>
                 </span>
-                <span className="pl-4 truncate">{result.title}</span>
+                <span className="w-4/4 ml-4 truncate">{result.title}</span>
               </span>
               <span className="iconBtn !w-full max-w-[64px] xs:!w-[40px] searchBtn cursor-pointer flex hover:!bg-transparent">
                 <svg
@@ -214,9 +218,9 @@ const Form = () => {
               </span>
             </a>
           ))}
-          {!hasMore && (
+          {!results.length && searchValue && (
             <div className="no-more-data text-center text-gray-500">
-              No more data
+              {hasMore ? "Loading..." : "No more data"}
             </div>
           )}
         </div>
