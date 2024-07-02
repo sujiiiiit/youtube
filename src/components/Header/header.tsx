@@ -3,7 +3,7 @@ import YtLogo from "../../assets/icons/yt";
 import MoonIcon from "../../assets/icons/moon";
 
 import SearchIcon from "../../assets/icons/search";
-
+import {Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 import Form from "./form";
 
@@ -42,9 +42,9 @@ const App = () => {
           <button className="iconBtn menuBtn xs:!hidden">
             <Menu />
           </button>
-          <span className="logo xs:ml-1.5">
+          <Link to={"/"} className="logo xs:ml-1.5">
             <YtLogo />
-          </span>
+          </Link>
         </div>
         <div className="searchbar flex gap-4  flex-shrink-0 flex-grow flex-basis-[732px] justify-center mdd:justify-end">
           <button  className="hidden searchBtn iconBtn xs:flex">
