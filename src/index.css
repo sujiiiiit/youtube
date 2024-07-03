@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 
-  
+
 
 :root {
     /* colors  */
@@ -11,19 +11,19 @@
     --svgColor: #000;
     --hover-color: rgba(0, 0, 0, 0.1);
     --txtPrimary: #000;
-    --txtSecondary:#606060;
-    --txtblue:#3ea6ff;
+    --txtSecondary: #606060;
+    --txtblue: #3ea6ff;
     --primary-border: #ccc;
     --secondary-border: #065fd4;
-
+    --detail-gradient: linear-gradient(to bottom, rgba(166, 166, 166, 0.800) 0%, rgba(166, 166, 166, 0.298) 33%, rgb(255,255,255,1) 100%);
 
     /* measurements */
     --header-height: 3.5rem;
-    --navwidth: 256px;
+    --navwidth: 240px;
 
 
     /* gird  */
-    --grid-padding:1.5rem;
+    --grid-padding: 1.5rem;
     --ytd-rich-grid-item-max-width: 500px;
     --ytd-rich-grid-items-per-row: 4;
     --ytd-rich-grid-item-margin: 16px;
@@ -36,8 +36,9 @@
     --svgColor: #fff;
     --hover-color: #272727;
     --txtPrimary: #fff;
-    --txtSecondary:#aaa;
+    --txtSecondary: #aaa;
     --primary-border: #383838;
+    --detail-gradient: linear-gradient(to bottom, rgba(89, 89, 89, 0.800) 0%, rgba(89, 89, 89, 0.298) 33%, rgba(15, 15, 15, 1.000) 100%);
 
 }
 
@@ -55,6 +56,7 @@
     font-weight: 400;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Geist';
     src: url('../../fonts/Geist/Geist-Bold.ttf') format('truetype');
@@ -71,6 +73,7 @@
 
     }
 }
+
 @media screen and (max-width: 1000px) {
     :root {
         --header-height: 3rem;
@@ -78,6 +81,7 @@
 
     }
 }
+
 @media screen and (max-width: 480px) {
     :root {
         --header-height: 3rem;
@@ -143,6 +147,7 @@ body {
     outline: 0;
     border-radius: 50%;
 }
+
 
 .iconBtn:not(.hidden) {
     display: flex;
