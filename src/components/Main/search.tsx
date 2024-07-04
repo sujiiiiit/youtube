@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useLocation, Link } from "react-router-dom";
+import NotFound from "./notfound";
 
 interface ContentItemType {
   imgURL: string;
@@ -143,16 +144,7 @@ const ContentItem: React.FC = () => {
         ))
       ) : data.length === 0 ? (
         // Condition 2: No data found
-        <div className="not-found-text w-full h-full flex flex-col justify-center items-center gap-4">
-          <img
-            className="w-full max-w-28	 xs:max-w-24"
-            src="./assets/monkey.png"
-            alt="Not Found"
-          />
-          <div className="text-3xl xs:text-xl text-Primary font-bold">
-            Not Found
-          </div>
-        </div>
+        <NotFound/>
       ) : (
         // Condition 3: Render data items
         data.map((item, index) => (

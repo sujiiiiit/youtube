@@ -3,13 +3,15 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  Navigate,
 } from "react-router-dom";
 import Header from "./components/Header/header";
 import Navbar from "./components/Navbar/navbar";
 import ContentItem from "./components/Main/recent";
 import SearchPage from "./components/Main/search";
 import WatchPage from "./components/Main/watch";
-import DramaDetail from "./components/Main/drama-detail";
+// import DramaDetail from "./components/Main/drama-detail";
+import DramaDetail from "./components/Main/drama2";
 import MainLayout from "./components/Main/MainLayout"; // Import the new MainLayout component
 
 const App: React.FC = () => {
@@ -44,7 +46,7 @@ const App: React.FC = () => {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/watch" element={<WatchPage />} />
               <Route path="/watch/*" element={<WatchPage />} />
-              <Route path="/drama-detail" element={<DramaDetail />} />
+              <Route path="/drama-detail" element={<Navigate to="/" />} />
               <Route path="/drama-detail/*" element={<DramaDetail />} />
               {/* Add more routes as needed */}
             </Routes>
