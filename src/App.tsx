@@ -10,8 +10,8 @@ import Navbar from "./components/Navbar/navbar";
 import ContentItem from "./components/Main/recent";
 import SearchPage from "./components/Main/search";
 import WatchPage from "./components/Main/watch";
-// import DramaDetail from "./components/Main/drama-detail";
-import DramaDetail from "./components/Main/drama2";
+import DramaDetail from "./components/Main/drama-detail";
+// import DramaDetail from "./components/Main/drama2";
 import MainLayout from "./components/Main/MainLayout"; // Import the new MainLayout component
 
 const App: React.FC = () => {
