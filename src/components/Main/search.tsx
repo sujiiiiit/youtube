@@ -118,7 +118,11 @@ const ContentItem: React.FC = () => {
       observer.current?.disconnect();
     };
   }, [data, lazyLoad]);
-
+  loading && page === 1
+    ? (document.title = "Loading...")
+    : (document.title = query
+        ? `Search results for "${query}" - Dramatube`
+        : "Dramatube");
   return (
     <div
       className={`content_grid w-full h-[calc(100vh_-_(2_*_var(--header-height)))] max-w-[calc(var(--ytd-rich-grid-content-max-width)_+_var(--ytd-rich-grid-item-margin))] ${
@@ -127,6 +131,7 @@ const ContentItem: React.FC = () => {
     >
       {loading && page === 1 ? (
         // Condition 1: Loading state
+
         Array.from({ length: 12 }).map((_, index) => (
           <div
             key={index}
@@ -144,7 +149,7 @@ const ContentItem: React.FC = () => {
         ))
       ) : data.length === 0 ? (
         // Condition 2: No data found
-        <NotFound/>
+        <NotFound />
       ) : (
         // Condition 3: Render data items
         data.map((item, index) => (

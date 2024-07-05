@@ -11,6 +11,7 @@ interface ContentItemType {
 }
 
 const ContentItem: React.FC = () => {
+  document.title = "Recently Added - Dramatube";
   const [data, setData] = useState<ContentItemType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(0);

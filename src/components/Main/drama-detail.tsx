@@ -5,6 +5,7 @@ import ShareIcon from "../../assets/icons/share";
 import PlayIcon from "../../assets/icons/play";
 import DownloadIcon from "../../assets/icons/download";
 import NotFound from "./notfound";
+import { handleShare } from "../utils/share.ts";
 
 interface Episode {
   postLink: string;
@@ -30,7 +31,7 @@ const DramaDetail: React.FC = () => {
   const path = location.pathname;
   const parts = path.split("/");
   const keyword = parts[2];
-  console.log(keyword);
+  // console.log(keyword);
 
   const fetchData = async (keyword: string) => {
     if (isLoadingRef.current) return;
@@ -58,6 +59,10 @@ const DramaDetail: React.FC = () => {
     }
   }, [keyword]);
 
+  loading || !data
+    ? (document.title = "Loading...")
+    : (document.title = "Detail : " + data.title);
+
   if (loading || !data) {
     return (
       <div className="loading-indicator w-full h-full flex justify-center items-center">
@@ -82,6 +87,7 @@ const DramaDetail: React.FC = () => {
   }
 
   const reversedEpisodes = data.episode.slice().reverse();
+
   const dataCondition =
     data.imgURL == null ||
     data.director == null ||
@@ -134,7 +140,10 @@ const DramaDetail: React.FC = () => {
                   <div className="absolute z-[1] top-0 left-0 bottom-0 right-0 opacity-10 group-hover:opacity-15 bg-Primary rounded-full"></div>
                   <AddPlayListIcon className="z-[2]" />
                 </button>
-                <button className="group z-[32] relative detailBtn iconBtn hover:!bg-transparent">
+                <button
+                  className="group z-[32] relative detailBtn iconBtn hover:!bg-transparent"
+                  onClick={()=>handleShare(window.location.href)}
+                >
                   <div className="absolute z-[1] top-0 left-0 bottom-0 right-0 opacity-10 group-hover:opacity-15 bg-Primary rounded-full"></div>
                   <ShareIcon className="z-[2]" />
                 </button>
@@ -148,7 +157,7 @@ const DramaDetail: React.FC = () => {
                 to={"#"}
                 className="group w-full h-10 outline-0 border-0 relative rounded-full flex flex-nowrap items-center justify-center"
               >
-                <div className="absolute top-0 left-0 right-0 bottom-0 opacity-80 group-hover:opacity-100 bg-Primary rounded-3xl z-[1]"></div>
+                <div className="absolute top-0 left-0 right-0 bottom-0  bg-Primary rounded-3xl z-[1]"></div>
                 <div className="dark:text-black h-10 text-white z-[2] flex justify-center items-center gap-1 text-sm px-4 rounded-3xl">
                   <span className="flex mb-[1.5px] items-center">
                     <PlayIcon className="fill-white dark:fill-black" />
@@ -197,7 +206,7 @@ const DramaDetail: React.FC = () => {
                 <span className="text-Secondary text-xs font-normal">
                   Episode {index + 1} &#x2022; {ep.typeContent}
                 </span>
-                <span className="text-Secondary text-xs font-normal">
+                <span className="text-Secondary text-xs font-normal text-nowrap">
                   {ep.time}
                 </span>
               </div>
@@ -207,9 +216,7 @@ const DramaDetail: React.FC = () => {
       </div>
     );
   } else {
-    return (
-      <NotFound/>
-    );
+    return <NotFound />;
   }
 };
 

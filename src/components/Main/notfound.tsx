@@ -1,4 +1,5 @@
 const App = () => {
+  document.title = "Not Found - Dramatube";
   return (
     <>
       <div className="not-found-text w-full h-full flex flex-col justify-center items-center gap-4">

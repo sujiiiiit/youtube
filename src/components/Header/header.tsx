@@ -6,6 +6,8 @@ import SearchIcon from "../../assets/icons/search";
 import {Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 import Form from "./form";
+// import { showToast } from "../utils/toast";
+
 
 const App = () => {
   const getSystemThemePreference = () => {
@@ -60,6 +62,9 @@ const App = () => {
           <button className="iconBtn  rotate-[135deg]	" onClick={toggleDarkMode}>
            <MoonIcon/>
           </button>
+          {/* <button className="iconBtn  rotate-[135deg]	" onClick={() => showToast("Hello this is Toast Notification")}>
+           <SearchIcon/>
+          </button> */}
         </div>
       </header>
     </>

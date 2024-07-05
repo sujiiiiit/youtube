@@ -36,8 +36,11 @@ const App: React.FC = () => {
 
   return (
     <Router>
+     
+
       <div className="h-dvh w-dvw font-Geist bg-[var(--background)] ">
         <Header />
+
         <section className="main flex w-dvw">
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
           <MainLayout isOpen={isOpen} windowWidth={windowWidth}>

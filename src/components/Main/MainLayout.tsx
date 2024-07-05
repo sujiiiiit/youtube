@@ -14,7 +14,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, isOpen, windowWidth }
   return (
     <div
       className={`mainContainer relative ${
-        isOpen && windowWidth > 600
+        isOpen && windowWidth > 810
           ? "w-[calc(100dvw_-_var(--navwidth))]"
           : "w-dvw"
       } bg-[var(--primary)] h-[calc(100vh_-_var(--header-height))] transition-[max-width_0.3s] mr-2 mdd:mr-0 ${

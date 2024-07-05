@@ -43,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, setIsOpen }) => {
         ref={navContainerRef}
         className={`navContainer ${
           isOpen ? "opened" : ""
-        } relative  transition-transform transition-width  max-w-[var(--navwidth)] w-0 overflow-auto bg-[var(--background)] mdd:absolute mdd:!h-dvh mdd:left-0 mdd:top-0 mdd:bottom-0 z-20 mdd:z-30`}
+        } relative  transition-transform transition-width  max-w-[var(--navwidth)] w-0 overflow-auto bg-[var(--background)] mdd:absolute mdd:!h-dvh mdd:left-0 mdd:top-0 mdd:bottom-0 mdd:z-30`}
       >
         <header className="header h-14 xs:h-12 relative items-center px-4 py-0 gap-4 xs:gap-2 xs:px-2 pr-0 hidden mdd:flex">
           <button className="iconBtn menuBtn xs:!hidden">
