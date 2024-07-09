@@ -220,12 +220,7 @@ svg {
     opacity: 1;
 }
 
-@media screen and (min-width: 800px) {
-    .overlay.opened {
-        display: none;
-    }
 
-}
 
 @media screen and (max-width: 580px) {
     .iconBtn:hover {

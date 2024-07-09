@@ -98,11 +98,11 @@ const DramaDetail: React.FC = () => {
 
   if (!dataCondition) {
     return (
-      <div className="w-full h-[calc(100dvh_-_var(--header-height)_-_1.5rem)] xs:h-[calc(100dvh_-_var(--header-height))] flex flex-row gap-4 xs:gap-2 xs:flex-col px-4 xs:p-0 overflow-auto my-6 xs:m-0">
-        <div className="flex flex-col sticky top-0 xs:relative xs:top-none z-20 box-border w-full max-w-sm xs:max-w-none rounded-2xl xs:rounded-none">
-          <div className="absolute  h-full left-0 right-0 w-full flex-1 p-6 rounded-16 mb-6 rounded-2xl xs:rounded-none overflow-hidden flex">
+      <div className="w-full  flex flex-row gap-4 xs:gap-2 xs:flex-col px-4 xs:p-0 overflow-auto my-6 xs:m-0">
+        <div className="flex h-full max-h-[calc(100dvh_-_var(--header-height))] flex-col sticky top-0 xs:relative xs:top-none z-20 box-border w-full max-w-sm xs:max-w-none rounded-2xl xs:rounded-none">
+          <div className="absolute   left-0 right-0 w-full flex-1 p-6 rounded-16 mb-6 rounded-2xl xs:rounded-none overflow-hidden flex">
             <div className="h-full z-30 img_shadow opacity-70 blur-[30px] flex justify-center">
-              <img className="w-full h-full" src={data.imgURL} alt="demo" />
+              <img className="w-full " src={data.imgURL} alt="demo" />
               <div
                 className="absolute z-[31] top-0 right-0 bottom-0 left-0"
                 style={{ background: "var(--detail-gradient)" }}
@@ -184,7 +184,7 @@ const DramaDetail: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-full list_div relative z-[21] h-fit pb-4">
+        <div className="w-full list_div relative z-[21]  pb-4">
           {reversedEpisodes.map((ep, index) => (
             <Link
               key={ep.postLink} // Ensure each episode has a unique key

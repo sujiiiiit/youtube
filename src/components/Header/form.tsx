@@ -7,7 +7,11 @@ import FilterIcon from "../../assets/icons/filter";
 import debounce from "lodash.debounce";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
-const Form = () => {
+interface FormProps{
+  windowWidth:number;
+}
+
+const Form :React.FC<FormProps>= ({windowWidth}) => {
   const [searchValue, setSearchValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -156,7 +160,7 @@ const Form = () => {
       >
         <div
           className={`${
-            isOpen && window.innerWidth <= 600 ? "xs:!flex" : "xs:!hidden"
+            isOpen && windowWidth <= 600 ? "xs:!flex" : "xs:!hidden"
           } absolute top-0 right-0 left-0 bottom-0 bg-[var(--background)] z-30 hidden`}
         ></div>
         {islocation.pathname.includes("/search") ? (
@@ -245,7 +249,7 @@ const Form = () => {
           ))}
           {!results.length &&
             searchValue &&
-            Array.from({ length: window.innerWidth > 600 ? 4 : 20 }).map(
+            Array.from({ length: windowWidth > 600 ? 4 : 20 }).map(
               (_, index) => (
                 <div
                   key={index}
@@ -277,7 +281,7 @@ const Form = () => {
         className={`absolute top-0 bottom-0 right-0 left-0 bg-transparent xs:bg-[var(--background)] h-dvh z-20 ${
           isOpen ? "block" : "hidden"
         }`}
-        onClick={() => (window.innerWidth > 600 ? setIsOpen(false) : "")}
+        onClick={() => (windowWidth > 600 ? setIsOpen(false) : "")}
       ></div>
     </>
   );

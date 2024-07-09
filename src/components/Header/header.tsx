@@ -8,8 +8,10 @@ import { useState, useEffect } from "react";
 import Form from "./form";
 // import { showToast } from "../utils/toast";
 
-
-const App = () => {
+interface Headerprops{
+  windowWidth :number;
+}
+const App :React.FC<Headerprops>=  ({windowWidth}) => {
   const getSystemThemePreference = () => {
     const prefersDarkMode =
       window.matchMedia &&
@@ -52,7 +54,7 @@ const App = () => {
           <button  className="hidden searchBtn iconBtn xs:flex">
             <SearchIcon />
           </button>
-         <Form/>
+         <Form windowWidth={windowWidth}/>
          
         </div>
         <div

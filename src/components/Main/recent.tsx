@@ -99,7 +99,7 @@ const ContentItem: React.FC = () => {
   }, [data, lazyLoad]);
 
   return (
-    <div className="content_grid w-full h-[calc(100vh_-_(2_*_var(--header-height)))] max-w-[calc(var(--ytd-rich-grid-content-max-width)_+_var(--ytd-rich-grid-item-margin))] py-[var(--grid-padding)] pl-[16px] pr-[10px] flex flex-wrap overflow-auto xs:pt-0 xs:pl-0 xs:pr-0 xs:m-0 xs:max-w-none">
+    <div className="content_grid w-full  max-w-[calc(var(--ytd-rich-grid-content-max-width)_+_var(--ytd-rich-grid-item-margin))] py-[var(--grid-padding)] pl-[16px] pr-[10px] flex flex-wrap  xs:pt-0 xs:pl-0 xs:pr-0 xs:m-0 xs:max-w-none">
       {loading && page === 1
         ? Array.from({ length: 12 }).map((_, index) => (
             <div

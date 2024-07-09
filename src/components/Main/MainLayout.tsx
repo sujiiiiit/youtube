@@ -13,7 +13,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, isOpen, windowWidth }
 
   return (
     <div
-      className={`mainContainer relative ${
+      className={`mainContainer overflow-x-hidden overflow-auto relative ${
         isOpen && windowWidth > 810
           ? "w-[calc(100dvw_-_var(--navwidth))]"
           : "w-dvw"
