@@ -44,7 +44,7 @@ const App: React.FC = () => {
 
   const isDetailLoadingRef = useRef<boolean>(false);
   const id = location.pathname.split("/")[2];
-
+  detailLoading ? "" : "";
   useEffect(() => {
     const fetchVideoUrl = async () => {
       try {
